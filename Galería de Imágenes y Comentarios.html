@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes y Comentarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 imágenes por fila */
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .gallery-item {
+            text-align: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .comment-form {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .comment-form input, .comment-form textarea {
+            width: 60%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .comment-form button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .comment-form button:hover {
+            background-color: #005f6a;
+        }
+        .comments-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .comment {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid #008CBA;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .comment p {
+            margin: 0;
+        }
+        .comment footer {
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container" style="background-color: #ffffcc;">
+      <h2 style="background-color: black;"><span style="color: white;">Galería
+          de Imágenes</span></h2>
+      <!-- Galería de 8 imágenes -->
+      <div class="gallery">
+        <div class="gallery-item"> <img src="imagenes/images.jpg" style="width: 133px; height: 100px;"
+            longdesc="imagenes/images.jpg"> </div>
+        <div class="gallery-item"> <img src="imagenes/descarga.jpg" alt="Imagen 2"
+            style="width: 133px; height: 100px;" longdesc="imagenes/descarga.jpg">
+        </div>
+        <div class="gallery-item"> <img src="imagenes/descarga%20%285%29.jpg" alt="Imagen 3"
+            style="width: 133px; height: 100px;"> </div>
+        <div class="gallery-item"> <img src="imagenes/descarga%20%284%29.jpg" alt="Imagen 4"
+            style="width: 133px; height: 100px;"> </div>
+        <div class="gallery-item"> <img src="imagenes/descarga%20%283%29.jpg" alt="Imagen 5"
+            style="width: 133px; height: 100px;"> </div>
+        <div class="gallery-item"> <img src="imagenes/descarga%20%282%29.jpg" alt="Imagen 6"
+            style="width: 133px; height: 100px;"> </div>
+        <div class="gallery-item"> <img src="imagenes/descarga%20%281%29.jpg" alt="Imagen 7"
+            style="width: 133px; height: 100px;"> </div>
+        <div class="gallery-item"> <img src="imagenes/ab67616d0000b273a484690118ec2c7a2e2ae124.jpg"
+            alt="Imagen 8" style="width: 133px; height: 100px;"> </div>
+      </div>
+      <!-- Sección de comentarios -->
+      <div class="comment-form">
+        <h3>Deja tu comentario sobre la galería</h3>
+        <input id="nombre" placeholder="Tu nombre" required="" type="text"> <textarea
+id="comentario" rows="4" placeholder="Escribe tu comentario..." required=""></textarea>
+        <button type="button" onclick="agregarComentario()">Enviar Comentario</button>
+      </div>
+      <!-- Comentarios -->
+      <div class="comments-section" id="comentarios"></div>
+    </div>
+    <script>
+        // Función para agregar comentario
+        function agregarComentario() {
+            var nombre = document.getElementById("nombre").value;
+            var comentario = document.getElementById("comentario").value;
+
+            if (nombre !== "" && comentario !== "") {
+                var nuevoComentario = document.createElement("div");
+                nuevoComentario.classList.add("comment");
+
+                var contenidoComentario = "<p><strong>" + nombre + ":</strong></p>";
+                contenidoComentario += "<p>" + comentario + "</p>";
+                contenidoComentario += "<footer>Publicado el " + new Date().toLocaleString() + "</footer>";
+
+                nuevoComentario.innerHTML = contenidoComentario;
+                document.getElementById("comentarios").appendChild(nuevoComentario);
+
+                // Limpiar los campos del formulario
+                document.getElementById("nombre").value = "";
+                document.getElementById("comentario").value = "";
+            } else {
+                alert("Por favor, completa todos los campos.");
+            }
+        }
+    </script>
+  </body>
+</html>
